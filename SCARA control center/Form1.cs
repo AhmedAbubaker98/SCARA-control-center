@@ -142,7 +142,7 @@ namespace SCARA_control_center
 
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        public void button11_Click(object sender, EventArgs e)
         {
             int x = Convert.ToInt32(Math.Round(numericUpDown3.Value));
             int y = Convert.ToInt32(Math.Round(numericUpDown4.Value));
@@ -154,21 +154,24 @@ namespace SCARA_control_center
 
             double t2;
             double t1;
-            double s1 = 0;
-            double s2 = 0;
-            double s3 = 0;
+            double s1;
+            double s2;
+            double s3;
 
             t2 = Math.Acos(((x * x) + (y * y) - (32.7 * 32.7) - (22.3 * 22.3)) / (2 * 32.7 * 22.3));
             t2 = t2 * 180 / Math.PI;
             t1 = Math.Atan(y / x) - Math.Atan(22.3 * Math.Sin(t2) / 32.7 + (22.3 * Math.Cos(t2)));
             t1 = t1 * 180 / Math.PI;
+            
+            textBox6.Text = t1.ToString();
+            textBox5.Text = t2.ToString();
+            textBox4.Text = numericUpDown8.Value.ToString();
+            textBox4.Text = numericUpDown5.Value.ToString();
 
-            s1 = (t1 / .200);
-            s2 = (t2 / .250);
-
-            textBox6.Text = s1.ToString();
-            textBox5.Text = s2.ToString();
-            textBox4.Text = "ummmm";
+            s1 = (t1 / .20);
+            s2 = (t2 / .25);
+            s3 = (z / 1);
+            
 
             string m1 = "P" + s1 + s2 + s3;
         }
@@ -232,6 +235,36 @@ namespace SCARA_control_center
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = numericUpDown7.Value.ToString();
+            textBox5.Text = numericUpDown9.Value.ToString();
+
+            double x = 32.7 * (Math.Sin((Double)numericUpDown7.Value * Math.PI / 180)) + (22.3 * (Math.Cos((Double)numericUpDown9.Value * Math.PI / 180)));
+            textBox1.Text = x.ToString();
+            double y = 32.7 * (Math.Cos((Double)numericUpDown7.Value * Math.PI / 180)) + (22.3 * (Math.Sin((Double)numericUpDown9.Value * Math.PI / 180)));
+            textBox2.Text = y.ToString();
+            
+            textBox4.Text = numericUpDown8.Value.ToString();
+            textBox3.Text = numericUpDown8.Value.ToString();
+
+        }
+
+        private void numericUpDown7_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown9_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown8_ValueChanged(object sender, EventArgs e)
         {
 
         }
