@@ -8,13 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing.Text;
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SCARA_control_center
 {
     
     public partial class Form1 : Form
     {
-        private char mode = 'J';
+        public char mode = 'J';
+        
 
         public Form1()
 
@@ -140,24 +144,46 @@ namespace SCARA_control_center
 
         private void button11_Click(object sender, EventArgs e)
         {
-            
+            int x = Convert.ToInt32(Math.Round(numericUpDown3.Value));
+            int y = Convert.ToInt32(Math.Round(numericUpDown4.Value));
+            int z = Convert.ToInt32(Math.Round(numericUpDown5.Value));
 
+            textBox1.Text = numericUpDown3.Value.ToString();
+            textBox2.Text = numericUpDown4.Value.ToString();
+            textBox3.Text = numericUpDown5.Value.ToString();
 
-            
-            string m1 = "P" + numericUpDown3.Value + numericUpDown4.Value + numericUpDown5.Value;
+            double t2;
+            double t1;
+            double s1 = 0;
+            double s2 = 0;
+            double s3 = 0;
+
+            t2 = Math.Acos(((x * x) + (y * y) - (32.7 * 32.7) - (22.3 * 22.3)) / (2 * 32.7 * 22.3));
+            t2 = t2 * 180 / Math.PI;
+            t1 = Math.Atan(y / x) - Math.Atan(22.3 * Math.Sin(t2) / 32.7 + (22.3 * Math.Cos(t2)));
+            t1 = t1 * 180 / Math.PI;
+
+            s1 = (t1 / .200);
+            s2 = (t2 / .250);
+
+            textBox6.Text = s1.ToString();
+            textBox5.Text = s2.ToString();
+            textBox4.Text = "ummmm";
+
+            string m1 = "P" + s1 + s2 + s3;
         }
 
-        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        public void numericUpDown4_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        public void numericUpDown5_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        public void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
 
         }
@@ -173,6 +199,41 @@ namespace SCARA_control_center
         private void button12_Click(object sender, EventArgs e)
         {
             Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/PixyMon");
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
