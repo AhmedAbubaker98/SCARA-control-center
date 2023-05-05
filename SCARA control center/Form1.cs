@@ -18,7 +18,10 @@ namespace SCARA_control_center
     public partial class Form1 : Form
     {
         public char mode = 'J';
-        
+        double L1 = 24;
+        double L2 = 12;
+        double t2;
+        double t1;
 
         public Form1()
 
@@ -144,28 +147,28 @@ namespace SCARA_control_center
 
         public void button11_Click(object sender, EventArgs e)
         {
-            int x = Convert.ToInt32(Math.Round(numericUpDown3.Value));
-            int y = Convert.ToInt32(Math.Round(numericUpDown4.Value));
-            int z = Convert.ToInt32(Math.Round(numericUpDown5.Value));
+            double x = Convert.ToInt32((numericUpDown3.Value));
+            double y = Convert.ToInt32((numericUpDown4.Value));
+            double z = Convert.ToInt32((numericUpDown5.Value));
 
             textBox1.Text = numericUpDown3.Value.ToString();
             textBox2.Text = numericUpDown4.Value.ToString();
             textBox3.Text = numericUpDown5.Value.ToString();
 
-            double t2;
-            double t1;
             double s1;
             double s2;
             double s3;
 
-            t2 = Math.Acos(((x * x) + (y * y) - (32.7 * 32.7) - (22.3 * 22.3)) / (2 * 32.7 * 22.3));
+
+            //t2 = Math.Acos(((x * x) + (y * y) - (32.7 * 32.7) - (22.3 * 22.3)) / (2 * 32.7 * 22.3));
+            t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
             t2 = t2 * 180 / Math.PI;
-            t1 = Math.Atan(y / x) - Math.Atan(22.3 * Math.Sin(t2) / 32.7 + (22.3 * Math.Cos(t2)));
+            //t1 = Math.Atan(y / x) - Math.Atan(22.3 * Math.Sin(t2) / 32.7 + (22.3 * Math.Cos(t2)));
+            t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
             t1 = t1 * 180 / Math.PI;
             
-            textBox6.Text = t1.ToString();
-            textBox5.Text = t2.ToString();
-            textBox4.Text = numericUpDown8.Value.ToString();
+            textBox6.Text = Math.Round(t1).ToString();
+            textBox5.Text = Math.Round(t2).ToString();
             textBox4.Text = numericUpDown5.Value.ToString();
 
             s1 = (t1 / .20);
@@ -243,14 +246,21 @@ namespace SCARA_control_center
         {
             textBox6.Text = numericUpDown7.Value.ToString();
             textBox5.Text = numericUpDown9.Value.ToString();
-
-            double x = 32.7 * (Math.Sin((Double)numericUpDown7.Value * Math.PI / 180)) + (22.3 * (Math.Cos((Double)numericUpDown9.Value * Math.PI / 180)));
-            textBox1.Text = x.ToString();
-            double y = 32.7 * (Math.Cos((Double)numericUpDown7.Value * Math.PI / 180)) + (22.3 * (Math.Sin((Double)numericUpDown9.Value * Math.PI / 180)));
-            textBox2.Text = y.ToString();
-            
             textBox4.Text = numericUpDown8.Value.ToString();
             textBox3.Text = numericUpDown8.Value.ToString();
+
+            t1 = t1 * Math.PI / 180; 
+            t2 = t2 * Math.PI / 180;
+            double x = L1 * Math.Cos(t1) + L2 * Math.Cos(t1 + t2);
+            textBox1.Text = x.ToString();
+            double y = L1 * Math.Sin(t1) + L2 * Math.Sin(t1 + t2);
+            textBox2.Text = y.ToString();
+
+            t1 = t1 * 180 / Math.PI;
+            t2 = t2 * 180 / Math.PI;
+
+            textBox1.Text = Math.Round(x).ToString();
+            textBox2.Text = Math.Round(y).ToString();
 
         }
 
