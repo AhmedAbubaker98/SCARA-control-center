@@ -22,6 +22,8 @@ namespace SCARA_control_center
         double L2 = 12;
         double t2;
         double t1;
+        double pt2;
+        double pt1;
 
         public Form1()
 
@@ -37,49 +39,168 @@ namespace SCARA_control_center
         private void button2_Click(object sender, EventArgs e)
         {
             if(mode == 'J') { serialPort1.Write("A"); }
-            else { serialPort1.Write("E"); }
+            else {
+
+                pt2 = t2;
+                pt1 = t1;
+                double x = Convert.ToInt32(textBox1.Text) + 1;
+                double y = Convert.ToInt32(textBox2.Text);
+                double z = Convert.ToInt32(textBox3.Text);
+
+                textBox1.Text = x.ToString();
+                //textBox2.Text = numericUpDown4.Value.ToString();
+                //textBox3.Text = numericUpDown5.Value.ToString();
+
+                t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
+                t2 = t2 * 180 / Math.PI;
+                t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
+                t1 = t1 * 180 / Math.PI;
+
+                textBox6.Text = Math.Round(t1).ToString();
+                textBox5.Text = Math.Round(t2).ToString();
+                textBox4.Text = numericUpDown5.Value.ToString();
+
+                string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
+                serialPort1.Write(m1);
+
+                serialPort1.Write("E");
         }
+    }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (mode == 'J') { serialPort1.Write("a"); }
-            else { serialPort1.Write("e"); }
+            else {
+                pt2 = t2;
+                pt1 = t1;
+                double x = Convert.ToInt32(textBox1.Text) - 1;
+                double y = Convert.ToInt32(textBox2.Text);
+                double z = Convert.ToInt32(textBox3.Text);
+
+                textBox1.Text = x.ToString();
+                //textBox2.Text = numericUpDown4.Value.ToString();
+                //textBox3.Text = numericUpDown5.Value.ToString();
+
+                t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
+                t2 = t2 * 180 / Math.PI;
+                t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
+                t1 = t1 * 180 / Math.PI;
+
+                textBox6.Text = Math.Round(t1).ToString();
+                textBox5.Text = Math.Round(t2).ToString();
+                textBox4.Text = numericUpDown5.Value.ToString();
+
+                string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
+                serialPort1.Write(m1);
+
+
+                serialPort1.Write("e"); }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             if (mode == 'J') { serialPort1.Write("B"); }
-            else { serialPort1.Write("F"); }
+            else {
+                pt2 = t2;
+                pt1 = t1;
+                double x = Convert.ToInt32(textBox1.Text);
+                double y = Convert.ToInt32(textBox2.Text) + 1;
+                double z = Convert.ToInt32(textBox3.Text);
+
+                //textBox1.Text = x.ToString();
+                textBox2.Text = y.ToString();
+                //textBox3.Text = numericUpDown5.Value.ToString();
+
+                t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
+                t2 = t2 * 180 / Math.PI;
+                t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
+                t1 = t1 * 180 / Math.PI;
+
+                textBox6.Text = Math.Round(t1).ToString();
+                textBox5.Text = Math.Round(t2).ToString();
+                textBox4.Text = numericUpDown5.Value.ToString();
+
+                string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
+                serialPort1.Write(m1);
+
+
+
+                serialPort1.Write("F"); }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             if (mode == 'J') { serialPort1.Write("b"); }
-            else { serialPort1.Write("f"); }
+            else {
+
+                pt2 = t2;
+                pt1 = t1;
+                double x = Convert.ToInt32(textBox1.Text) ;
+                double y = Convert.ToInt32(textBox2.Text) - 1;
+                double z = Convert.ToInt32(textBox3.Text);
+
+                //textBox1.Text = x.ToString();
+                textBox2.Text = y.ToString();
+                //textBox3.Text = numericUpDown5.Value.ToString();
+
+                t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
+                t2 = t2 * 180 / Math.PI;
+                t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
+                t1 = t1 * 180 / Math.PI;
+
+                textBox6.Text = Math.Round(t1).ToString();
+                textBox5.Text = Math.Round(t2).ToString();
+                textBox4.Text = numericUpDown5.Value.ToString();
+
+                string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
+                serialPort1.Write(m1);
+
+
+                serialPort1.Write("f"); }
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             if (mode == 'J') { serialPort1.Write("C"); }
-            else { serialPort1.Write("G"); }
+            else { 
+                
+                
+                
+                
+                serialPort1.Write("G"); }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             if (mode == 'J') { serialPort1.Write("c"); }
-            else { serialPort1.Write("g"); }
+            else { 
+                
+                
+                
+                
+                serialPort1.Write("g"); }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             if (mode == 'J') { serialPort1.Write("D"); }
-            else { serialPort1.Write("H"); }
+            else { 
+                
+                
+                
+                
+                serialPort1.Write("H"); }
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             if (mode == 'J') { serialPort1.Write("d"); }
-            else { serialPort1.Write("h"); }
+            else { 
+                
+                
+                
+                
+                serialPort1.Write("h"); }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -147,6 +268,8 @@ namespace SCARA_control_center
 
         public void button11_Click(object sender, EventArgs e)
         {
+            pt2 = t2;
+            pt1 = t1;
             double x = Convert.ToInt32((numericUpDown3.Value));
             double y = Convert.ToInt32((numericUpDown4.Value));
             double z = Convert.ToInt32((numericUpDown5.Value));
@@ -154,11 +277,6 @@ namespace SCARA_control_center
             textBox1.Text = numericUpDown3.Value.ToString();
             textBox2.Text = numericUpDown4.Value.ToString();
             textBox3.Text = numericUpDown5.Value.ToString();
-
-            double s1;
-            double s2;
-            double s3;
-
 
             //t2 = Math.Acos(((x * x) + (y * y) - (32.7 * 32.7) - (22.3 * 22.3)) / (2 * 32.7 * 22.3));
             t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
@@ -170,13 +288,9 @@ namespace SCARA_control_center
             textBox6.Text = Math.Round(t1).ToString();
             textBox5.Text = Math.Round(t2).ToString();
             textBox4.Text = numericUpDown5.Value.ToString();
-
-            s1 = (t1 / .20);
-            s2 = (t2 / .25);
-            s3 = (z / 1);
             
-
-            string m1 = "P" + s1 + s2 + s3;
+            string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
+            serialPort1.Write(m1);
         }
 
         public void numericUpDown4_ValueChanged(object sender, EventArgs e)
@@ -244,6 +358,9 @@ namespace SCARA_control_center
 
         private void button13_Click(object sender, EventArgs e)
         {
+            pt2 = t2;
+            pt1 = t1;
+
             textBox6.Text = numericUpDown7.Value.ToString();
             textBox5.Text = numericUpDown9.Value.ToString();
             textBox4.Text = numericUpDown8.Value.ToString();
