@@ -38,7 +38,31 @@ namespace SCARA_control_center
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(mode == 'J') { serialPort1.Write("A"); }
+            if(mode == 'J')
+            {
+                pt2 = t2;
+                pt1 = t1;
+                //textBox6.Text = numericUpDown7.Value.ToString("###,##0.00");
+                //textBox5.Text = numericUpDown9.Value.ToString("###,##0.00");
+                //textBox4.Text = numericUpDown8.Value.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown8.Value.ToString("###,##0.00");
+
+                t1 = (t1 + (0.36 * (double)numericUpDown1.Value)) * (Math.PI / 180);
+                //t2 = t2 * Math.PI / 180;
+                double x = L1 * Math.Cos(t1) + L2 * Math.Cos(t1 + t2);
+                textBox1.Text = x.ToString("###,##0.00");
+                double y = L1 * Math.Sin(t1) + L2 * Math.Sin(t1 + t2);
+                textBox2.Text = y.ToString("###,##0.00");
+
+                t1 = t1 * 180 / Math.PI;
+                //t2 = t2 * 180 / Math.PI;
+
+                textBox6.Text = t1.ToString("###,##0.00");
+                textBox1.Text = x.ToString("###,##0.00");
+                textBox2.Text = y.ToString("###,##0.00");
+
+
+                serialPort1.Write("A"); }
             else {
 
                 pt2 = t2;
@@ -47,29 +71,56 @@ namespace SCARA_control_center
                 double y = Convert.ToInt32(textBox2.Text);
                 double z = Convert.ToInt32(textBox3.Text);
 
-                textBox1.Text = x.ToString();
-                //textBox2.Text = numericUpDown4.Value.ToString();
-                //textBox3.Text = numericUpDown5.Value.ToString();
+                textBox1.Text = x.ToString("###,##0.00");
+                //textBox2.Text = numericUpDown4.Value.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
                 t2 = t2 * 180 / Math.PI;
                 t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
                 t1 = t1 * 180 / Math.PI;
 
-                textBox6.Text = Math.Round(t1).ToString();
-                textBox5.Text = Math.Round(t2).ToString();
-                textBox4.Text = numericUpDown5.Value.ToString();
+                textBox6.Text = t1.ToString("###,##0.00");
+                textBox5.Text = t2.ToString("###,##0.00");
+                textBox4.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
                 serialPort1.Write(m1);
 
-                serialPort1.Write("E");
+                //serialPort1.Write("E");
         }
     }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (mode == 'J') { serialPort1.Write("a"); }
+            if (mode == 'J')
+            {
+                pt2 = t2;
+                pt1 = t1;
+                //textBox6.Text = numericUpDown7.Value.ToString("###,##0.00");
+                //textBox5.Text = numericUpDown9.Value.ToString("###,##0.00");
+                //textBox4.Text = numericUpDown8.Value.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown8.Value.ToString("###,##0.00");
+
+                t1 = (t1 - (0.36 * (double)numericUpDown1.Value)) * (Math.PI / 180);
+                //t2 = t2 * Math.PI / 180;
+                double x = L1 * Math.Cos(t1) + L2 * Math.Cos(t1 + t2);
+                textBox1.Text = x.ToString("###,##0.00");
+                double y = L1 * Math.Sin(t1) + L2 * Math.Sin(t1 + t2);
+                textBox2.Text = y.ToString("###,##0.00");
+
+                t1 = t1 * 180 / Math.PI;
+                //t2 = t2 * 180 / Math.PI;
+
+                textBox6.Text = t1.ToString("###,##0.00");
+                textBox1.Text = x.ToString("###,##0.00");
+                textBox2.Text = y.ToString("###,##0.00");
+
+
+                serialPort1.Write("A");
+
+
+                serialPort1.Write("a"); }
             else {
                 pt2 = t2;
                 pt1 = t1;
@@ -77,18 +128,18 @@ namespace SCARA_control_center
                 double y = Convert.ToInt32(textBox2.Text);
                 double z = Convert.ToInt32(textBox3.Text);
 
-                textBox1.Text = x.ToString();
-                //textBox2.Text = numericUpDown4.Value.ToString();
-                //textBox3.Text = numericUpDown5.Value.ToString();
+                textBox1.Text = x.ToString("###,##0.00");
+                //textBox2.Text = numericUpDown4.Value.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
                 t2 = t2 * 180 / Math.PI;
                 t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
                 t1 = t1 * 180 / Math.PI;
 
-                textBox6.Text = Math.Round(t1).ToString();
-                textBox5.Text = Math.Round(t2).ToString();
-                textBox4.Text = numericUpDown5.Value.ToString();
+                textBox6.Text = t1.ToString("###,##0.00");
+                textBox5.Text = t2.ToString("###,##0.00");
+                textBox4.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
                 serialPort1.Write(m1);
@@ -99,7 +150,12 @@ namespace SCARA_control_center
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (mode == 'J') { serialPort1.Write("B"); }
+            if (mode == 'J')
+            {
+               
+            
+            
+            }
             else {
                 pt2 = t2;
                 pt1 = t1;
@@ -107,18 +163,18 @@ namespace SCARA_control_center
                 double y = Convert.ToInt32(textBox2.Text) + 1;
                 double z = Convert.ToInt32(textBox3.Text);
 
-                //textBox1.Text = x.ToString();
-                textBox2.Text = y.ToString();
-                //textBox3.Text = numericUpDown5.Value.ToString();
+                //textBox1.Text = x.ToString("###,##0.00");
+                textBox2.Text = y.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
                 t2 = t2 * 180 / Math.PI;
                 t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
                 t1 = t1 * 180 / Math.PI;
 
-                textBox6.Text = Math.Round(t1).ToString();
-                textBox5.Text = Math.Round(t2).ToString();
-                textBox4.Text = numericUpDown5.Value.ToString();
+                textBox6.Text = t1.ToString("###,##0.00");
+                textBox5.Text = t2.ToString("###,##0.00");
+                textBox4.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
                 serialPort1.Write(m1);
@@ -130,7 +186,12 @@ namespace SCARA_control_center
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (mode == 'J') { serialPort1.Write("b"); }
+            if (mode == 'J')
+            {
+               
+            
+            
+            }
             else {
 
                 pt2 = t2;
@@ -139,18 +200,18 @@ namespace SCARA_control_center
                 double y = Convert.ToInt32(textBox2.Text) - 1;
                 double z = Convert.ToInt32(textBox3.Text);
 
-                //textBox1.Text = x.ToString();
-                textBox2.Text = y.ToString();
-                //textBox3.Text = numericUpDown5.Value.ToString();
+                //textBox1.Text = x.ToString("###,##0.00");
+                textBox2.Text = y.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
                 t2 = t2 * 180 / Math.PI;
                 t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
                 t1 = t1 * 180 / Math.PI;
 
-                textBox6.Text = Math.Round(t1).ToString();
-                textBox5.Text = Math.Round(t2).ToString();
-                textBox4.Text = numericUpDown5.Value.ToString();
+                textBox6.Text = t1.ToString("###,##0.00");
+                textBox5.Text = t2.ToString("###,##0.00");
+                textBox4.Text = numericUpDown5.Value.ToString("###,##0.00");
 
                 string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
                 serialPort1.Write(m1);
@@ -161,7 +222,37 @@ namespace SCARA_control_center
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (mode == 'J') { serialPort1.Write("C"); }
+            if (mode == 'J')
+            {
+                pt2 = t2;
+                pt1 = t1;
+                //textBox6.Text = numericUpDown7.Value.ToString("###,##0.00");
+                //textBox5.Text = numericUpDown9.Value.ToString("###,##0.00");
+                //textBox4.Text = numericUpDown8.Value.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown8.Value.ToString("###,##0.00");
+
+                //t1 = t1  * (Math.PI / 180);
+                t2 = (t2 + (0.36 * (double)numericUpDown1.Value)) * Math.PI / 180;
+                double x = L1 * Math.Cos(t1) + L2 * Math.Cos(t1 + t2);
+                textBox1.Text = x.ToString("###,##0.00");
+                double y = L1 * Math.Sin(t1) + L2 * Math.Sin(t1 + t2);
+                textBox2.Text = y.ToString("###,##0.00");
+
+                //t1 = t1 * 180 / Math.PI;
+                t2 = t2 * 180 / Math.PI;
+
+                textBox5.Text = t2.ToString("###,##0.00");
+                textBox1.Text = x.ToString("###,##0.00");
+                textBox2.Text = y.ToString("###,##0.00");
+
+
+                serialPort1.Write("A");
+
+
+                serialPort1.Write("B");
+
+
+                serialPort1.Write("C"); }
             else { 
                 
                 
@@ -172,7 +263,37 @@ namespace SCARA_control_center
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (mode == 'J') { serialPort1.Write("c"); }
+            if (mode == 'J')
+            {
+                pt2 = t2;
+                pt1 = t1;
+                //textBox6.Text = numericUpDown7.Value.ToString("###,##0.00");
+                //textBox5.Text = numericUpDown9.Value.ToString("###,##0.00");
+                //textBox4.Text = numericUpDown8.Value.ToString("###,##0.00");
+                //textBox3.Text = numericUpDown8.Value.ToString("###,##0.00");
+
+                //t1 = t1  * (Math.PI / 180);
+                t2 = (t2 - (0.36 * (double)numericUpDown1.Value)) * Math.PI / 180;
+                double x = L1 * Math.Cos(t1) + L2 * Math.Cos(t1 + t2);
+                textBox1.Text = x.ToString("###,##0.00");
+                double y = L1 * Math.Sin(t1) + L2 * Math.Sin(t1 + t2);
+                textBox2.Text = y.ToString("###,##0.00");
+
+                //t1 = t1 * 180 / Math.PI;
+                t2 = t2 * 180 / Math.PI;
+
+                textBox5.Text = t2.ToString("###,##0.00");
+                textBox1.Text = x.ToString("###,##0.00");
+                textBox2.Text = y.ToString("###,##0.00");
+
+
+                serialPort1.Write("A");
+
+
+                serialPort1.Write("b");
+
+
+                serialPort1.Write("c"); }
             else { 
                 
                 
@@ -183,7 +304,12 @@ namespace SCARA_control_center
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (mode == 'J') { serialPort1.Write("D"); }
+            if (mode == 'J')
+            {
+
+
+
+                serialPort1.Write("D"); }
             else { 
                 
                 
@@ -194,7 +320,12 @@ namespace SCARA_control_center
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (mode == 'J') { serialPort1.Write("d"); }
+            if (mode == 'J')
+            {
+
+
+
+                serialPort1.Write("d"); }
             else { 
                 
                 
@@ -274,9 +405,9 @@ namespace SCARA_control_center
             double y = Convert.ToInt32((numericUpDown4.Value));
             double z = Convert.ToInt32((numericUpDown5.Value));
 
-            textBox1.Text = numericUpDown3.Value.ToString();
-            textBox2.Text = numericUpDown4.Value.ToString();
-            textBox3.Text = numericUpDown5.Value.ToString();
+            textBox1.Text = numericUpDown3.Value.ToString("###,##0.00");
+            textBox2.Text = numericUpDown4.Value.ToString("###,##0.00");
+            textBox3.Text = numericUpDown5.Value.ToString("###,##0.00");
 
             //t2 = Math.Acos(((x * x) + (y * y) - (32.7 * 32.7) - (22.3 * 22.3)) / (2 * 32.7 * 22.3));
             t2 = Math.Acos((x * x + y * y - L1 * L1 - L2 * L2) / (2 * L1 * L2));
@@ -285,9 +416,9 @@ namespace SCARA_control_center
             t1 = Math.Atan2(y, x) - Math.Atan2((L2 * Math.Sin(t2)), (L1 + L2 * Math.Cos(t2)));
             t1 = t1 * 180 / Math.PI;
             
-            textBox6.Text = Math.Round(t1).ToString();
-            textBox5.Text = Math.Round(t2).ToString();
-            textBox4.Text = numericUpDown5.Value.ToString();
+            textBox6.Text = t1.ToString("###,##0.00");
+            textBox5.Text = t2.ToString("###,##0.00");
+            textBox4.Text = numericUpDown5.Value.ToString("###,##0.00");
             
             string m1 = "P" + t1 / 0.20 + t2 / 0.25 + z;
             serialPort1.Write(m1);
@@ -361,23 +492,23 @@ namespace SCARA_control_center
             pt2 = t2;
             pt1 = t1;
 
-            textBox6.Text = numericUpDown7.Value.ToString();
-            textBox5.Text = numericUpDown9.Value.ToString();
-            textBox4.Text = numericUpDown8.Value.ToString();
-            textBox3.Text = numericUpDown8.Value.ToString();
+            textBox6.Text = numericUpDown7.Value.ToString("###,##0.00");
+            textBox5.Text = numericUpDown9.Value.ToString("###,##0.00");
+            textBox4.Text = numericUpDown8.Value.ToString("###,##0.00");
+            textBox3.Text = numericUpDown8.Value.ToString("###,##0.00");
 
             t1 = t1 * Math.PI / 180; 
             t2 = t2 * Math.PI / 180;
             double x = L1 * Math.Cos(t1) + L2 * Math.Cos(t1 + t2);
-            textBox1.Text = x.ToString();
+            textBox1.Text = x.ToString("###,##0.00");
             double y = L1 * Math.Sin(t1) + L2 * Math.Sin(t1 + t2);
-            textBox2.Text = y.ToString();
+            textBox2.Text = y.ToString("###,##0.00");
 
             t1 = t1 * 180 / Math.PI;
             t2 = t2 * 180 / Math.PI;
 
-            textBox1.Text = Math.Round(x).ToString();
-            textBox2.Text = Math.Round(y).ToString();
+            textBox1.Text = x.ToString("###,##0.00");
+            textBox2.Text = y.ToString("###,##0.00");
 
         }
 
