@@ -359,7 +359,7 @@
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 644);
+            this.splitter1.Size = new System.Drawing.Size(3, 645);
             this.splitter1.TabIndex = 11;
             this.splitter1.TabStop = false;
             // 
@@ -577,7 +577,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(31, 55);
+            this.button12.Location = new System.Drawing.Point(112, 26);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(75, 23);
             this.button12.TabIndex = 25;
@@ -737,7 +737,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1414, 644);
+            this.ClientSize = new System.Drawing.Size(1414, 645);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
