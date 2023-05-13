@@ -86,6 +86,19 @@
             this.label18 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.button14 = new System.Windows.Forms.Button();
+            this.GroupBox5 = new System.Windows.Forms.GroupBox();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -97,11 +110,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.GroupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
             // 
-            this.serialPort1.PortName = "COM5";
+            this.serialPort1.PortName = "COM3";
             // 
             // button1
             // 
@@ -369,7 +383,7 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 12;
-            this.button9.Text = "HOMING";
+            this.button9.Text = "HOME";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
@@ -733,11 +747,141 @@
             this.button14.Text = "Get Current Position";
             this.button14.UseVisualStyleBackColor = true;
             // 
+            // GroupBox5
+            // 
+            this.GroupBox5.Controls.Add(this.label25);
+            this.GroupBox5.Controls.Add(this.label24);
+            this.GroupBox5.Controls.Add(this.label23);
+            this.GroupBox5.Controls.Add(this.label22);
+            this.GroupBox5.Controls.Add(this.button19);
+            this.GroupBox5.Controls.Add(this.button20);
+            this.GroupBox5.Controls.Add(this.button21);
+            this.GroupBox5.Controls.Add(this.button22);
+            this.GroupBox5.Controls.Add(this.button17);
+            this.GroupBox5.Controls.Add(this.button18);
+            this.GroupBox5.Controls.Add(this.button16);
+            this.GroupBox5.Controls.Add(this.button15);
+            this.GroupBox5.Location = new System.Drawing.Point(895, 446);
+            this.GroupBox5.Name = "GroupBox5";
+            this.GroupBox5.Size = new System.Drawing.Size(251, 197);
+            this.GroupBox5.TabIndex = 36;
+            this.GroupBox5.TabStop = false;
+            this.GroupBox5.Text = "Tool Station";
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(61, 24);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 0;
+            this.button15.Text = "Set Position";
+            this.button15.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(142, 24);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 1;
+            this.button16.Text = "Equip";
+            this.button16.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(61, 55);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(75, 23);
+            this.button17.TabIndex = 3;
+            this.button17.Text = "Set Position";
+            this.button17.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(142, 55);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(75, 23);
+            this.button18.TabIndex = 2;
+            this.button18.Text = "Equip";
+            this.button18.UseVisualStyleBackColor = true;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(61, 84);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 7;
+            this.button19.Text = "Set Position";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(142, 84);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(75, 23);
+            this.button20.TabIndex = 6;
+            this.button20.Text = "Equip";
+            this.button20.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(61, 113);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 23);
+            this.button21.TabIndex = 5;
+            this.button21.Text = "Set Position";
+            this.button21.UseVisualStyleBackColor = true;
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(142, 113);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(75, 23);
+            this.button22.TabIndex = 4;
+            this.button22.Text = "Equip";
+            this.button22.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 25);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(37, 13);
+            this.label22.TabIndex = 8;
+            this.label22.Text = "Tool 1";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 55);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(37, 13);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "Tool 2";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 84);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(37, 13);
+            this.label24.TabIndex = 10;
+            this.label24.Text = "Tool 3";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 113);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(37, 13);
+            this.label25.TabIndex = 11;
+            this.label25.Text = "Tool 4";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1414, 645);
+            this.ClientSize = new System.Drawing.Size(1147, 645);
+            this.Controls.Add(this.GroupBox5);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -768,6 +912,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.GroupBox5.ResumeLayout(false);
+            this.GroupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -829,6 +975,19 @@
         private System.Windows.Forms.NumericUpDown numericUpDown7;
         private System.Windows.Forms.Button button14;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.GroupBox GroupBox5;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button15;
     }
 }
 

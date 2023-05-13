@@ -9,15 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing.Text;
-using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace SCARA_control_center
 {
     
     public partial class Form1 : Form
     {
+        [DllImport("user32.dll")]
+        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+
+        private const uint SWP_SHOWWINDOW = 0x0040;
+        private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+
         public char mode = 'J';
         double L1 = 24;
         double L2 = 12;
@@ -455,12 +466,26 @@ namespace SCARA_control_center
 
         }
 
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
-
-        private void button12_Click(object sender, EventArgs e)
+        public void button12_Click(object sender, EventArgs e)
         {
-            Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/PixyMon");
+
+            ProcessStartInfo psi = new ProcessStartInfo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/PixyMon");
+            psi.WindowStyle = ProcessWindowStyle.Normal;
+            Process p = Process.Start(psi);
+
+            while (p.MainWindowHandle == IntPtr.Zero)
+            {
+                Thread.Sleep(10);
+                p.Refresh();
+            }
+
+            // Set the parent of the PixyMon window to the main form of the application
+            SetParent(p.MainWindowHandle, this.Handle);
+
+            // Pin the PixyMon window to a specific location on Form1
+            SetWindowPos(p.MainWindowHandle, HWND_TOPMOST, 100, 100, 640, 480, SWP_SHOWWINDOW);
+
+
         }
 
         private void label18_Click(object sender, EventArgs e)
