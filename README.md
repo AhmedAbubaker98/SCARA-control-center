@@ -21,10 +21,10 @@ This repository contains the complete codebase for the SCARA Robotic Arm Project
 
 ## Code Structure
 
-- **control_algorithms/**: Contains the core direct and inverse kinematics algorithms.
-- **vision_module/**: Manages all computer vision processes and object detection.
-- **ui_components/**: Components for building and managing the user interface.
-- **tool_station/**: Code for the automated tool station, including task scheduling.
+- **control_algorithms**: Contains the core direct and inverse kinematics algorithms.
+- **vision_module**: Manages all computer vision processes and object detection.
+- **ui_components**: Components for building and managing the user interface.
+- **tool_station**: Code for the automated tool station, including task scheduling.
 
 ## Usage
 
